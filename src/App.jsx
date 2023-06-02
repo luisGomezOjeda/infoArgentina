@@ -1,4 +1,3 @@
-import React from 'react';
 import { ContentMain } from './components/ContentMain';
 
 function App() {

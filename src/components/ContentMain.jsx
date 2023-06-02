@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FormSerchLocation } from './form/FormSerchLocation';
 import { MapArg } from './map/MapArg';
 

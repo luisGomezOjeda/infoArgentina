@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelecteds } from '../../hooks/useSelecteds';
 import "./Form.css";
 

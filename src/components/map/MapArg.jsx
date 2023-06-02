@@ -45,7 +45,6 @@ export const MapArg = ({ infoLocation }) => {
   const myMapRef = useRef(null);
   
   const handdleExpand = (e) => {
-    console.log(myMapRef.current.classList)
     myMapRef.current.classList.toggle("active");
 
     myMapRef.current.classList.contains("active") ? e.target.src = reduce : e.target.src = expand
