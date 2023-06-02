@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from "leaflet"
 import 'leaflet/dist/leaflet.css';
 import './MapArg.css';
 
-import expand from "../../assets/expand.png"
-import reduce from "../../assets/reduce.png"
+import expand from "../../assets/expand.png";
+import reduce from "../../assets/reduce.png";
+import iconLocation from "../../assets/location.png";
 
 
 export const MapArg = ({ infoLocation }) => {
@@ -41,7 +43,7 @@ export const MapArg = ({ infoLocation }) => {
   },[infoLocation])
 
   const myMapRef = useRef(null);
-
+  
   const handdleExpand = (e) => {
     console.log(myMapRef.current.classList)
     myMapRef.current.classList.toggle("active");
@@ -49,6 +51,12 @@ export const MapArg = ({ infoLocation }) => {
     myMapRef.current.classList.contains("active") ? e.target.src = reduce : e.target.src = expand
 
   }
+
+  const customIcon = L.icon({
+    iconUrl : iconLocation,
+    iconSize : [50, 50],
+    iconAnchor : [20,40]
+  })
 
   return (
     <section className="sectionMap" ref={myMapRef}>
@@ -58,19 +66,17 @@ export const MapArg = ({ infoLocation }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <Marker position={position}>
-          {Object.keys(infoLocation).length === 0 &&
+        <Marker position={position} icon = {customIcon}>
+          { Object.keys(infoLocation).length === 0 &&
           <Popup className='info-popup'>
             <h2> Republica Argentina </h2>
             <b> 24 Provincias </b> <br/>
             <b> Cordenadas : {position} </b>
-          </Popup>  
-          } 
+          </Popup>  } 
           
           { Object.keys(infoLocation).length !== 0 &&
             <Popup className='info-popup'>
-             {
-             Object.keys(contentPopup).map((content) => {
+             { Object.keys(contentPopup).map((content) => {
               return(
                 <>
                 <span>{ content } :</span><b>{ contentPopup[content]}</b>
@@ -80,8 +86,7 @@ export const MapArg = ({ infoLocation }) => {
              })
              }
              <span>cordenadas : </span><b>{position}</b>
-            </Popup>
-            }
+            </Popup> }
         </Marker>
       </MapContainer>
       <button className='button-expand' id='button-expand' onClick={handdleExpand}>
