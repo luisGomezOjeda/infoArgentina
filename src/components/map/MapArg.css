@@ -37,6 +37,7 @@
 
 .button-expand img{
     width:100% ;
+    height: max-content;
 }
 
 .leaflet-popup-content-wrapper{

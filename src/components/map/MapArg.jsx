@@ -54,7 +54,7 @@ export const MapArg = ({ infoLocation }) => {
   const customIcon = L.icon({
     iconUrl : iconLocation,
     iconSize : [50, 50],
-    iconAnchor : [20,40]
+    iconAnchor : [25,40]
   })
 
   return (
